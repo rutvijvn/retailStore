@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd	
+						http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<import resource="classpath:META-INF/spring-data-config.xml"/>
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.bussvcs.retailstore" />
+
+	<bean id="productRepository" class="org.powermock.api.easymock.PowerMock"
+		factory-method="createMock">
+		<constructor-arg type="java.lang.Class"
+			value="com.bussvcs.retailstore.data.repository.ProductRepository" />
+	</bean>
+
+	<bean id="billRepository" class="org.powermock.api.easymock.PowerMock"
+		factory-method="createMock">
+		<constructor-arg type="java.lang.Class"
+			value="com.bussvcs.retailstore.data.repository.BillRepository" />
+	</bean>
+
+	<bean id="productServiceImpl" class="com.bussvcs.retailstore.service.impl.ProductServiceImpl" />
+	<bean id="billingServiceImpl" class="com.bussvcs.retailstore.service.impl.BillingServiceImpl" />
+	<bean id="connectivityServiceImpl" class="com.bussvcs.retailstore.service.impl.ConnectivityServiceImpl" />
+	
+</beans>
